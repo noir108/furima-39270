@@ -45,8 +45,8 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
       it 'passwordが129文字以上では登録できない' do
-        @user.password =  Faker::Internet.password(min_length: 129)
-        @user.password_confirmation =  @user.password
+        @user.password = Faker::Internet.password(min_length: 129)
+        @user.password_confirmation = @user.password
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is too long (maximum is 128 characters)')
       end
@@ -75,12 +75,12 @@ RSpec.describe User, type: :model do
       it 'seiが全角（漢字・ひらがな・カタカナ）以外だと登録できない' do
         @user.sei = 'Marry'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Sei is invalid. Input full-width characters")
+        expect(@user.errors.full_messages).to include('Sei is invalid. Input full-width characters')
       end
       it 'meiが全角（漢字・ひらがな・カタカナ）以外だと登録できない' do
         @user.mei = 'John'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Mei is invalid. Input full-width characters")
+        expect(@user.errors.full_messages).to include('Mei is invalid. Input full-width characters')
       end
       it 'sei_kanaが空では登録できない' do
         @user.sei_kana = ''
@@ -95,12 +95,12 @@ RSpec.describe User, type: :model do
       it 'sei_kanaが全角（カタカナ）以外だと登録できない' do
         @user.sei_kana = 'やまだ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Sei kana is invalid. Input full-width katakana characters")
+        expect(@user.errors.full_messages).to include('Sei kana is invalid. Input full-width katakana characters')
       end
       it 'mei_kanaが全角（カタカナ）以外だと登録できない' do
         @user.mei_kana = 'たろう'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Mei kana is invalid. Input full-width katakana characters")
+        expect(@user.errors.full_messages).to include('Mei kana is invalid. Input full-width katakana characters')
       end
       it 'birthdayが空では登録できない' do
         @user.birthday = ''
