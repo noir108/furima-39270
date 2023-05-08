@@ -9,7 +9,7 @@ class User < ApplicationRecord
     validates :nickname, :birthday
     validates :sei, :mei, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' }
     validates :sei_kana, :mei_kana, format: { with: /\A[ァ-ヶー]+\z/, message: 'is invalid. Input full-width katakana characters' }
-
-    has_many :items
   end
+
+  has_many :items
 end
