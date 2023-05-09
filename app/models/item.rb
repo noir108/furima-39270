@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
 
-
   with_options presence: true do
     validates :name, :content, :price, :image
   end
