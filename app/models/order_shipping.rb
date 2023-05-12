@@ -1,6 +1,6 @@
 class OrderShipping
   include ActiveModel::Model
-  attr_accessor :postal_code, :area_id :city, :address_line, :building, :phone_number, :item_id, :user_id
+  attr_accessor :postal_code, :area_id, :city, :address_line, :building, :phone_number, :item_id, :user_id
 
   with_options presence: true do
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
@@ -13,6 +13,6 @@ class OrderShipping
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
     # donation_idには、変数donationのidと指定する
-    Address.create(postal_code: postal_code, area_id: area_id, city: city, address_line: address_line, building: building, phone_number: phone_number, order_id: order.id)
+    Shipping.create(postal_code: postal_code, area_id: area_id, city: city, address_line: address_line, building: building, phone_number: phone_number, order_id: order.id)
   end
 end
