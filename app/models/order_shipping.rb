@@ -1,9 +1,18 @@
 class OrderShipping
   include ActiveModel::Model
-  
-  # ここにバリデーションの処理を書く
+  attr_accessor :postal_code, :area_id :city, :address_line, :building, :phone_number, :item_id, :user_id
+
+  with_options presence: true do
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :phone_number, length: { minimum: 10, maximum: 11 },
+                             format: { with: /\A[0-9]+\z/, message: 'is invalid. Input only number' }
+    validates :city, :address_line, :item_id, :user_id
+  end
+  validates :area_id, numericality: { other_than: 0, message: "can't be blank" }
 
   def save
-    # 各テーブルにデータを保存する処理を書く
+    order = Order.create(item_id: item_id, user_id: user_id)
+    # donation_idには、変数donationのidと指定する
+    Address.create(postal_code: postal_code, area_id: area_id, city: city, address_line: address_line, building: building, phone_number: phone_number, order_id: order.id)
   end
 end
