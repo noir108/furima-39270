@@ -49,8 +49,18 @@ RSpec.describe OrderShipping, type: :model do
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'phone_numberが半角数値以外を含むと保存できないこと' do
+      it 'phone_numberが全角を含むと保存できないこと' do
+        @order_shipping.phone_number = '０８０11112222'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include("Phone number is invalid. Input only number")
+      end
+      it 'phone_numberが記号を含むと保存できないこと' do
         @order_shipping.phone_number = 111-2220-3330
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include("Phone number is invalid. Input only number")
+      end
+      it 'phone_numberが半角英字を含むと保存できないこと' do
+        @order_shipping.phone_number = '111a2220a3330'
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Phone number is invalid. Input only number")
       end
