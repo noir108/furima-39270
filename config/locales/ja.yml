@@ -25,7 +25,7 @@ ja:
         postal_code: 郵便番号
         area_id: 都道府県
         city: 市町村
-        address_line: 住所
+        address_line: 番地
         building: 建物名
         phone_number: 電話番号
-        token: トークン
+        token: クレジットカード情報
