@@ -30,52 +30,52 @@ RSpec.describe Item, type: :model do
       it 'category_idが空では登録できない' do
         @item.category_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include('Category を入力してください')
       end
       it 'category_idが初期値(---)だと登録できない' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include('Category を入力してください')
       end
       it 'status_idが空では登録できない' do
         @item.status_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status can't be blank")
+        expect(@item.errors.full_messages).to include('Status を入力してください')
       end
       it 'status_idが初期値(---)だと登録できない' do
         @item.status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status can't be blank")
+        expect(@item.errors.full_messages).to include('Status を入力してください')
       end
       it 'shipping_fee_idが空では登録できない' do
         @item.shipping_fee_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
+        expect(@item.errors.full_messages).to include('Shipping fee を入力してください')
       end
       it 'shipping_fee_idが初期値(---)だと登録できない' do
         @item.shipping_fee_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
+        expect(@item.errors.full_messages).to include('Shipping fee を入力してください')
       end
       it 'area_idが空では登録できない' do
         @item.area_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Area can't be blank")
+        expect(@item.errors.full_messages).to include('Area を入力してください')
       end
       it 'area_idが初期値(---)だと登録できない' do
         @item.area_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Area can't be blank")
+        expect(@item.errors.full_messages).to include('Area を入力してください')
       end
       it 'lead_time_idが空では登録できない' do
         @item.lead_time_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Lead time can't be blank")
+        expect(@item.errors.full_messages).to include('Lead time を入力してください')
       end
       it 'lead_time_idが初期値(---)だと登録できない' do
         @item.lead_time_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("Lead time can't be blank")
+        expect(@item.errors.full_messages).to include('Lead time を入力してください')
       end
       it 'priceが空では登録できない' do
         @item.price = ''
@@ -85,24 +85,24 @@ RSpec.describe Item, type: :model do
       it 'priceが300未満だと登録できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is out of setting range')
+        expect(@item.errors.full_messages).to include('Price が設定範囲外です')
       end
       it 'priceが9,999,999以上だと登録できない' do
         @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is out of setting range')
+        expect(@item.errors.full_messages).to include('Price が設定範囲外です')
       end
       it 'priceが全角の場合は登録できない' do
         @item.price = '５００'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters',
-                                                      'Price is out of setting range')
+        expect(@item.errors.full_messages).to include('Price は無効です。 半角数字を入力してください',
+                                                      'Price が設定範囲外です')
       end
       it 'priceが半角英字の場合は登録できない' do
         @item.price = 'aaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters',
-                                                      'Price is out of setting range')
+        expect(@item.errors.full_messages).to include('Price は無効です。 半角数字を入力してください',
+                                                      'Price が設定範囲外です')
       end
       it 'userが紐付いていないと保存できない' do
         @item.user = nil

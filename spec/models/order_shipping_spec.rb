@@ -27,7 +27,7 @@ RSpec.describe OrderShipping, type: :model do
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @order_shipping.postal_code = 1_112_222
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
+        expect(@order_shipping.errors.full_messages).to include('Postal code は無効です。 ハイフン(-)を含めてください')
       end
       it 'area_idを選択していないと保存できないこと' do
         @order_shipping.area_id = 0
@@ -52,17 +52,17 @@ RSpec.describe OrderShipping, type: :model do
       it 'phone_numberが全角を含むと保存できないこと' do
         @order_shipping.phone_number = '０８０11112222'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid. Input only number')
+        expect(@order_shipping.errors.full_messages).to include('Phone number は無効です。 半角数字のみです')
       end
       it 'phone_numberが記号を含むと保存できないこと' do
         @order_shipping.phone_number = 111 - 2220 - 3330
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid. Input only number')
+        expect(@order_shipping.errors.full_messages).to include('Phone number は無効です。 半角数字のみです')
       end
       it 'phone_numberが半角英字を含むと保存できないこと' do
         @order_shipping.phone_number = '111a2220a3330'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid. Input only number')
+        expect(@order_shipping.errors.full_messages).to include('Phone number は無効です。 半角数字のみです')
       end
       it 'phone_numberが9桁以下だと保存できないこと' do
         @order_shipping.phone_number = 111_222_333

@@ -54,19 +54,19 @@ RSpec.describe User, type: :model do
         @user.password = '123456'
         @user.password_confirmation = '123456'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
+        expect(@user.errors.full_messages).to include('Password は無効です。文字と数字を両方含めてください')
       end
       it 'passwordが半角英字のみの場合は登録できない' do
         @user.password = 'abcdef'
         @user.password_confirmation = 'abcdef'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
+        expect(@user.errors.full_messages).to include('Password は無効です。文字と数字を両方含めてください')
       end
       it 'passwordが全角の場合は登録できない' do
         @user.password = '１２３４５６'
         @user.password_confirmation = '１２３４５６'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
+        expect(@user.errors.full_messages).to include('Password は無効です。文字と数字を両方含めてください')
       end
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password = '123abc'
@@ -87,32 +87,32 @@ RSpec.describe User, type: :model do
       it 'seiが全角（漢字・ひらがな・カタカナ）以外だと登録できない' do
         @user.sei = 'Marry'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Sei is invalid. Input full-width characters')
+        expect(@user.errors.full_messages).to include('Sei は無効です。 全角文字を入力してください')
       end
       it 'meiが全角（漢字・ひらがな・カタカナ）以外だと登録できない' do
         @user.mei = 'John'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Mei is invalid. Input full-width characters')
+        expect(@user.errors.full_messages).to include('Mei は無効です。 全角文字を入力してください')
       end
       it 'sei_kanaが空では登録できない' do
         @user.sei_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Sei kana can't be blank")
+        expect(@user.errors.full_messages).to include('Sei kana は無効です。 全角カタカナを入力してください')
       end
       it 'mei_kanaが空では登録できない' do
         @user.mei_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Mei kana can't be blank")
+        expect(@user.errors.full_messages).to include('Mei kana は無効です。 全角カタカナを入力してください')
       end
       it 'sei_kanaが全角（カタカナ）以外だと登録できない' do
         @user.sei_kana = 'やまだ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Sei kana is invalid. Input full-width katakana characters')
+        expect(@user.errors.full_messages).to include('Sei kana は無効です。 全角カタカナを入力してください')
       end
       it 'mei_kanaが全角（カタカナ）以外だと登録できない' do
         @user.mei_kana = 'たろう'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Mei kana is invalid. Input full-width katakana characters')
+        expect(@user.errors.full_messages).to include('Mei kana は無効です。 全角カタカナを入力してください')
       end
       it 'birthdayが空では登録できない' do
         @user.birthday = ''
