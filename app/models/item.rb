@@ -2,11 +2,11 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name, :content, :price, :image
   end
-  with_options numericality: { other_than: 0, message: "can't be blank" } do
+  with_options numericality: { other_than: 0, message: "を入力してください" } do
     validates :category_id, :status_id, :shipping_fee_id, :area_id, :lead_time_id
   end
-  validates :price, numericality: { only_integer: true, message: 'is invalid. Input half-width characters' }
-  validates :price, inclusion: { in: 300..9_999_999, message: 'is out of setting range' }
+  validates :price, numericality: { only_integer: true, message: 'は無効です。 半角数字を入力してください' }
+  validates :price, inclusion: { in: 300..9_999_999, message: 'が設定範囲外です' }
 
   belongs_to :user
   has_one_attached :image
