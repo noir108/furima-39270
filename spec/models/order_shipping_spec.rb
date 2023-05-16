@@ -32,7 +32,7 @@ RSpec.describe OrderShipping, type: :model do
       it 'area_idを選択していないと保存できないこと' do
         @order_shipping.area_id = 0
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Area can't be blank")
+        expect(@order_shipping.errors.full_messages).to include("Area を選んでください")
       end
       it 'cityが空だと保存できないこと' do
         @order_shipping.city = ''

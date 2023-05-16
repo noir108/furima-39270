@@ -8,7 +8,7 @@ class OrderShipping
                              format: { with: /\A[0-9]+\z/, message: 'は無効です。 半角数字のみです' }
     validates :city, :address_line, :item_id, :user_id, :token
   end
-  validates :area_id, numericality: { other_than: 0, message: "can't be blank" }
+  validates :area_id, numericality: { other_than: 0, message: "を選んでください" }
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)
